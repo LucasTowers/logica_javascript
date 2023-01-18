@@ -1,0 +1,75 @@
+<meta charset="UTF-8">
+
+<input/>
+<button>Compare com minha senha</button>
+
+<script>
+
+	function sorteia() {
+		return Math.round(Math.random() * 10);
+	}
+
+	function sorteiaNum(quantidade) {
+		var senhas = [];
+		var num = 1;
+
+		while(num <= quantidade) {
+			var numAleatorio = sorteia();
+			var achou = false;
+
+			if(numAleatorio !== 0){
+				for(var posicao = 0; posicao < senhas.length; posicao++) {
+
+					if(senhas[posicao] == numAleatorio) {
+						achou = true;
+						break;
+					}
+
+				}
+
+				if(achou == false) {
+					senhas.push(numAleatorio);
+					num++;
+				}
+			}
+		}
+
+		return senhas;
+
+	}
+
+	function verifica() {
+
+		var achou = false;
+
+		for(var posicao = 0; posicao < senhas.length; posicao++) {
+
+			if(input.value == senhas[posicao]) {
+ 				alert("Voce acertou");
+ 				achou = true;
+ 				break;
+ 			} 
+
+		}
+
+		if(achou == false) {
+			alert("Voce errou");
+
+		}
+ 		
+ 		input.value = "";
+ 		input.focus();
+ 	}
+
+ 	var senhas = sorteiaNum(3);
+
+	console.log(senhas);
+
+	var input = document.querySelector("input");
+	input.focus();
+
+ 	var button = document.querySelector("button");
+
+ 	button.onclick = verifica;
+
+</script>
